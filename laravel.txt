@@ -1,0 +1,34 @@
+node --version
+npm --version
+npm install -g gulp
+npm install -g bower
+vagrant box add laravel/homestead
+composer require "laravel/homestead=~2.0"
+homestead --version
+homestead init
+#################
+#####  GIT  #####
+cd ~/.ssh
+cd Users/RJimenez/.ssh/
+ssh-keygen
+#################
+homestead up
+
+laravel new sistema
+
+#################
+CREA TABLA DE USUARIOS
+php artisan make:auth
+php artisan migrate
+#################
+
+php artisan migrate:install
+php artisan migrate:make create_users_table
+php artisan migrate
+
+#################
+Crea un nuevo modelo de tabla en la bd
+php artisan make:migration create_tasks_table --create=tasks
+php artisan migrate
+php artisan make:model Task
+php artisan make:controller PhotoController --resource
